@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Scoring : MonoBehaviour
 {
-    public static int gamescore;
+    public static int gamescore = 0;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        gamescore = 0;
     }
 
     // Update is called once per frame
@@ -24,5 +29,10 @@ public class Scoring : MonoBehaviour
             GUI.skin.box.fontSize = 60;
             GUI.Box(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 50, 400, 100), "Game Over");
         }
+        if (GameState.state == GameState.levelComplete)
+        {
+            GUI.skin.box.fontSize = 60;
+            GUI.Box(new Rect(Screen.width / 2 - 250, Screen.height / 2 - 50, 500, 100), "Level Complete");
+        }
     }
-} 
+}
