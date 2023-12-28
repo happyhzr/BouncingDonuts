@@ -7,10 +7,13 @@ public class donut : MonoBehaviour
 {
     public Rigidbody2D rigidBody;
     float levelCompleteTimer;
+    float gameOverTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         levelCompleteTimer = 5.0f;
+        gameOverTimer = 5.0f;
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -35,10 +38,34 @@ public class donut : MonoBehaviour
                     GameState.level = 2;
                     SceneManager.LoadScene("Scenes/Level 2");
                 }
+                else if (GameState.level == 2)
+                {
+                    GameState.level = 3;
+                    SceneManager.LoadScene("Scenes/Level 3");
+                }
+                else if (GameState.level == 3)
+                {
+                    GameState.level = 4;
+                    SceneManager.LoadScene("Scenes/Level 4");
+                }
+                else if (GameState.level == 4)
+                {
+                    GameState.level = 5;
+                    SceneManager.LoadScene("Scenes/Level 5");
+                }
                 else
                 {
                     GameState.state = GameState.gameOver;
                 }
+            }
+        }
+        if (GameState.state == GameState.gameOver)
+        {
+            gameOverTimer -= Time.deltaTime;
+            if(gameOverTimer< 0.0f)
+            {
+                GameState.state = GameState.gamePlay;
+                SceneManager.LoadScene("Scenes/Title");
             }
         }
     }

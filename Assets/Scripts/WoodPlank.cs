@@ -15,11 +15,11 @@ public class WoodPlank : MonoBehaviour
     {
         if (GameState.state == GameState.gamePlay)
         {
-            if (Input.GetKey("w"))
+            if (Input.GetKey("up"))
             {
                 transform.Translate(0, 5 * Time.deltaTime, 0);
             }
-            if (Input.GetKey("s"))
+            if (Input.GetKey("down"))
             {
                 transform.Translate(0, -5 * Time.deltaTime, 0);
             }

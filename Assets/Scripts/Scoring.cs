@@ -24,6 +24,7 @@ public class Scoring : MonoBehaviour
     {
         GUI.skin.box.fontSize = 30;
         GUI.Box(new Rect(20, 20, 200, 50), "Score: " + gamescore);
+        GUI.Box(new Rect(Screen.width - 220, 20, 200, 50), "Level " + GameState.level);
         if (GameState.state == GameState.gameOver)
         {
             GUI.skin.box.fontSize = 60;

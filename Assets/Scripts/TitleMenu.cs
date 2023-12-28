@@ -19,7 +19,9 @@ public class TitleMenu : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(GameScene);
+        Scoring.gamescore = 0;
+        GameState.level = 1;
+        SceneManager.LoadScene("Scenes/Level 1");
     }
     public void ExitGame()
     {
