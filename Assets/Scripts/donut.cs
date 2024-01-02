@@ -8,6 +8,9 @@ public class donut : MonoBehaviour
     public Rigidbody2D rigidBody;
     float levelCompleteTimer;
     float gameOverTimer;
+    AudioSource boingA;
+    AudioSource boingB;
+    AudioSource boingC;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +18,10 @@ public class donut : MonoBehaviour
         levelCompleteTimer = 5.0f;
         gameOverTimer = 5.0f;
         rigidBody = GetComponent<Rigidbody2D>();
+        AudioSource[] audios = GetComponents<AudioSource>();
+        boingA = audios[0];
+        boingB = audios[1];
+        boingC = audios[2];
     }
 
     // Update is called once per frame
@@ -62,7 +69,7 @@ public class donut : MonoBehaviour
         if (GameState.state == GameState.gameOver)
         {
             gameOverTimer -= Time.deltaTime;
-            if(gameOverTimer< 0.0f)
+            if (gameOverTimer < 0.0f)
             {
                 GameState.state = GameState.gamePlay;
                 SceneManager.LoadScene("Scenes/Title");
@@ -74,14 +81,17 @@ public class donut : MonoBehaviour
         if (collision.gameObject.name == "WoodPlank")
         {
             Scoring.gamescore += 10;
+            boingA.Play();
         }
         if (collision.gameObject.name == "Sphere")
         {
             Scoring.gamescore += 50;
+            boingB.Play();
         }
         if (collision.gameObject.name == "DonutBox")
         {
             Scoring.gamescore += 100;
+            boingC.Play();
             GameState.state = GameState.levelComplete;
         }
     }
